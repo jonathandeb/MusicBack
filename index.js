@@ -2,7 +2,7 @@ require('dotenv').config();
 const cors = require('cors');
 const express = require('express');
 const { dbConnection } = require('./database/config');
-
+const port = process.env.JWT_SECRET || 3000
 //Crear servidor de express
 const app = express();
 //Configurar cors
@@ -32,5 +32,5 @@ app.use( '/api/follow', require('./routes/follow.routes') )
 //jUwZ6RDZYnJTpQ4m
 
 app.listen( process.env.PORT, ()=>{
-    console.log('Servidor corriendo en puerto' + process.env.PORT)
+    console.log('Servidor corriendo en puerto' + port)
 } );

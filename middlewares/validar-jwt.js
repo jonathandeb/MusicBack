@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const Usuario = require("../models/usuario.model");
-
+const port = process.env.JWT_SECRET || 3000
 const validarJWT = ( req, res, next ) => {
 
     // Leer el token
@@ -16,7 +16,7 @@ const validarJWT = ( req, res, next ) => {
     
     try {
         
-        const { uid } = jwt.verify( token, process.env.JWT_SECRET );
+        const { uid } = jwt.verify( token, port);
         console.log(token)
 
         req.uid = uid
