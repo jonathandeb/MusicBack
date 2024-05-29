@@ -2,7 +2,9 @@ require('dotenv').config();
 const cors = require('cors');
 const express = require('express');
 const { dbConnection } = require('./database/config');
-const port = process.env.JWT_SECRET || 3000
+const { initializeApp } = require('firebase/app');
+const { firebaseConfig } = require('./database/firebase.config');
+const port = process.env.PORT || 3000
 //Crear servidor de express
 const app = express();
 //Configurar cors
@@ -14,9 +16,10 @@ app.use(express.static('public'))
 //Lectura y parseo del body
 app.use(express.json());
 
+
 //Base de datos
 dbConnection();
-
+initializeApp(firebaseConfig);
 //Rutas
 
 app.use( '/api/login', require('./routes/auth.routes') )
