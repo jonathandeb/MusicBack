@@ -42,10 +42,9 @@ const getUsuarios = async( req, res )=>{
 
 const getUsuario = async( req, res )=>{
 
-    const id = String(req.params.uid);
-    console.log(id)
+    const email = String(req.params.email);
 try {
-    usuario = await Usuario.findById(id)
+    usuario = await Usuario.findOne({ email })
 
     res.json(
         {
